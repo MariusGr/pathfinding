@@ -34,13 +34,13 @@ void setup() {
         kantengewicht[i][j] = 0;
       } else {
 //        if(knoten.getNodeById(i).containsWayTo(j)){
-          kantengewicht[i][j] = random(10);
+          kantengewicht[i][j] = (int) random(10);
           kantengewicht[j][i] = kantengewicht[i][j];
 //        } else {
 //          kantengewicht[i][j] = -1; // oder 0
 //          kantengewicht[j][i] = kantengewicht[i][j]; // das selbe wie drüber quasi        
 //        }
-//      }
+      }
     }
   }
   
