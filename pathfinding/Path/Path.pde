@@ -26,33 +26,11 @@ void setup() {
   size(700, 700);
   textSize(20);
 
-  // erstelle Kantengewichte
-  kantengewicht = new int[anzahlKnoten][anzahlKnoten];
-  for(int i=0 ; i<anzahlKnoten ; i++){
-    for(int j=i ; j<anzahlKnoten ; j++){
-      if(i == j){
-        kantengewicht[i][j] = 0;
-      } else {
-//        if(knoten.getNodeById(i).containsWayTo(j)){
-          kantengewicht[i][j] = (int) random(10);
-          kantengewicht[j][i] = kantengewicht[i][j];
-//        } else {
-//          kantengewicht[i][j] = -1; // oder 0
-//          kantengewicht[j][i] = kantengewicht[i][j]; // das selbe wie drüber quasi        
-//        }
-      }
-    }
-  }
-  
-
-  // So gross werden die Knoten dargestellt
-  knotenRadius = 15;
-
   // Alle Knoten in einem Array
   knoten = new Knoten[anzahlKnoten];
 
   // Array mit Knoten füllen
-  for (int i = 0; i < knoten.length; i++) {
+  for (int i=0 ; i < knoten.length ; i++) {
     knoten[i] = new Knoten(i);
   }
 
@@ -65,6 +43,34 @@ void setup() {
         knoten[i].knotenVerknuepfenMit(knoten[j]); //
     }
   }
+
+
+  // erstelle Kantengewichte
+  kantengewicht = new int[anzahlKnoten][anzahlKnoten];
+  
+  for(int i=0 ; i<anzahlKnoten; i++){
+    for(int j=i ; j<anzahlKnoten; j++){
+      if(i == j){
+        kantengewicht[i][j] = 0;
+      } else {
+        if(knoten[i].containsWayTo(j)){
+          kantengewicht[i][j] = (int) random(10);
+          kantengewicht[j][i] = kantengewicht[i][j];
+        } else {
+          kantengewicht[i][j] = -1; // oder 0 wobei 0 eher die strecken zu sich selbst sein sollte
+          kantengewicht[j][i] = kantengewicht[i][j]; // das selbe wie drüber quasi        
+        }
+      }
+    }
+  }
+  
+
+  // So gross werden die Knoten dargestellt
+  knotenRadius = 15;
+
+
+
+
 
   refresh(0);
 }

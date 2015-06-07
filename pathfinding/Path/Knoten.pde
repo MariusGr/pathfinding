@@ -16,6 +16,10 @@ class Knoten {
     yPos = (int) random(height);
   }
 
+  public boolean containsWayTo(int n){
+    return this.kantenListe.contains(n);
+  }
+
   /**
    * Fügt einen Knoten in die Liste dieses Knotens ein und umgekehrt, und verknüpft diese so. Ein Knoten kann
    * nicht mit sich selbst verknüpft werden.

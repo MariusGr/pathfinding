@@ -12,6 +12,10 @@ public class KantenListe {
   }
   
   
+  public boolean contains(int n){
+    return this.first.contains(n);
+  }
+  
   public KantenIterator iterator() {
     KantenIterator newI = new KantenIterator(this.first);
     return(newI);
@@ -155,6 +159,18 @@ public class KantenListe {
       next = null;
       previous = null;
       nutzlast = _k;
+    }
+    
+    private boolean contains(int n){
+      if(this.nutzlast.getNummer() == n){
+        return true;
+      } else {
+        if(this.next == null){
+          return false;
+        } else {
+          return this.next.contains(n);
+        }
+      }
     }
     
     /**
