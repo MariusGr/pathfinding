@@ -71,6 +71,8 @@ class Knoten {
 
     fill(0);
     text(this.nummer, this.xPos-_d/4, this.yPos+_d/4);
+    
+    noStroke();
   }
 
   /**
@@ -90,10 +92,10 @@ class Knoten {
   public void zeichneKante(Knoten _k, int _s, color _c) {
     PVector temp = _k.position();
 
-    stroke(_c);
     strokeWeight(_s);
-
+    stroke(_c);
     line(temp.x, temp.y, this.xPos, this.yPos);
+    noStroke();
   }
 
   /**

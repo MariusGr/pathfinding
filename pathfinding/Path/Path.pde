@@ -3,11 +3,14 @@ Knoten[] knoten;
 int knotenRadius;      // Radius der Kreise, die die Knoten repräsentieren
 int anzahlKnoten = 20;
 int bufferI = -1;
+int[][] kantengewicht;
+
 
 Knoten highlighted = null;
 Knoten start = null;
 Knoten ziel = null;
 Knoten lastPressed;
+
 
 //Grafik:
 color hintergrund = color(100, 100, 100);     // Hintergrundfarbe
@@ -22,6 +25,25 @@ int highlightedStrokeWeight = 3; // Dicke der Ränder und Kanten, wenn sie marki
 void setup() {
   size(700, 700);
   textSize(20);
+
+  // erstelle Kantengewichte
+  kantengewicht = new int[anzahlKnoten][anzahlKnoten];
+  for(int i=0 ; i<anzahlKnoten ; i++){
+    for(int j=i ; j<anzahlKnoten ; j++){
+      if(i == j){
+        kantengewicht[i][j] = 0;
+      } else {
+//        if(knoten.getNodeById(i).containsWayTo(j)){
+          kantengewicht[i][j] = random(10);
+          kantengewicht[j][i] = kantengewicht[i][j];
+//        } else {
+//          kantengewicht[i][j] = -1; // oder 0
+//          kantengewicht[j][i] = kantengewicht[i][j]; // das selbe wie drüber quasi        
+//        }
+//      }
+    }
+  }
+  
 
   // So gross werden die Knoten dargestellt
   knotenRadius = 15;
