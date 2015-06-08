@@ -5,7 +5,7 @@ int anzahlKnoten = 20;
 int bufferI = -1;
 int[][] kantengewicht;
 
-
+KantenListe shortestWay;
 Knoten highlighted = null;
 Knoten start = null;
 Knoten ziel = null;
@@ -68,16 +68,14 @@ void setup() {
   // So gross werden die Knoten dargestellt
   knotenRadius = 15;
 
-
-
-
-
   refresh(0);
 }
+
 
 void draw() {
   refresh(hoverKnoten());
 }
+
 
 /**
  * Überprüft, ob die Maus sich über einem Knoten befindet.
@@ -97,6 +95,11 @@ int hoverKnoten() {
 
   return (-1);
 }
+
+/* methode zum hovern über knoten */
+void drawHover() {}
+
+
 
 /**
  * Stellt den Knoten mit dem Index _i und all seine Kanten als markiert dar
@@ -161,6 +164,7 @@ void randomPath(Knoten _s, Knoten _z) {
   println(tempL);    // Testweise ausgabe der gefundenen Liste
 }
 
+
 /**
  *  Sucht den kürzesten Weg vom Startknoten aus.
  */
@@ -170,3 +174,33 @@ void shortestPath(Knoten start, Knoten ziel, int anzahlKnoten) {
   start.searchShortestPath(ziel, anzahlKnoten);
   //println(tempListe);
 }
+
+/* Zeichne alle Wege */
+void drawAllConnections(){
+  for(int i = 0; i<knoten.length; i++){
+    knoten[i].drawConnections();
+  }
+}
+
+/*  */
+void drawAllNodes(){
+  for(int i=0; i<knoten.length; i++){
+    // knoten[i].drawNode();
+  }
+}
+
+/*
+ * der Body von draw() sollte der besseren lesbarkeit wie folgt aussehen
+ * 
+ * ...
+ * 
+ * drawAllConnections();
+ * drawShortestWay();
+ * drawAllNodes();
+ * drawHoverNode();
+ * drawText(); bzw. drawNumber();
+ * 
+ * da diese in einer Schleife aufgerufen wird muss auch nicht refreshed werden
+ */
+
+

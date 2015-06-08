@@ -16,6 +16,19 @@ class Knoten {
     yPos = (int) random(height);
   }
 
+
+  public void drawConnections(){
+    KantenListe temp = kantenListe;
+    while(kantenListe.hasNext()){
+      temp.next();
+      strokeWeight(3); // temporär
+      stroke(130);     // temporär
+      line(this.xPos, this.yPos, temp.x, temp.y);
+      noStroke();
+    }
+  }
+
+
   public boolean containsWayTo(int n){
     return this.kantenListe.contains(n);
   }
