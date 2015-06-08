@@ -46,6 +46,10 @@ void setup() {
 
 
   // erstelle Kantengewichte
+  // wenn weg vorhanden
+  // kantengewicht jeweils 1 bis 9
+  // wenn nicht -1
+  // und wenn i=j 0 da das der weg von sich selbst zu sich selbst ist
   kantengewicht = new int[anzahlKnoten][anzahlKnoten];
   
   for(int i=0 ; i<anzahlKnoten; i++){
@@ -54,12 +58,22 @@ void setup() {
         kantengewicht[i][j] = 0;
       } else {
         if(knoten[i].containsWayTo(j)){
-          kantengewicht[i][j] = (int) random(10);
+          kantengewicht[i][j] = (int) random(9)+1;
           kantengewicht[j][i] = kantengewicht[i][j];
         } else {
-          kantengewicht[i][j] = -1; // oder 0 wobei 0 eher die strecken zu sich selbst sein sollte
-          kantengewicht[j][i] = kantengewicht[i][j]; // das selbe wie drüber quasi        
+          kantengewicht[i][j] = -1;
+          kantengewicht[j][i] = kantengewicht[i][j];       
         }
+      }
+    }
+  }
+  
+  // ausgabe der kantengewichte auf console
+  for(int i=0; i<kantengewicht.length; i++){
+    for(int j=0; j<kantengewicht.length; j++){
+      System.out.print(kantengewicht[i][j]+" ");
+      if(j==kantengewicht.length-1){
+        System.out.print("\n");
       }
     }
   }
@@ -175,10 +189,10 @@ void shortestPath(Knoten start, Knoten ziel, int anzahlKnoten) {
   //println(tempListe);
 }
 
-/* Zeichne alle Wege */
+/* Zeichne alle Wege auskommentiert weil falsch implementiert */
 void drawAllConnections(){
   for(int i = 0; i<knoten.length; i++){
-    knoten[i].drawConnections();
+    // knoten[i].drawConnections();
   }
 }
 
